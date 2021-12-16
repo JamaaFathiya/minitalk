@@ -34,7 +34,7 @@ void	handler(int sig, siginfo_t *info, void *context)
 		cur_pid = new_pid;
 		reset(&c, &bits);
 	}
-	c |= (sig == SIGUSR1);
+	c |= (sig == SIGUSR2);
 	c <<= 1;
 	if (bits == 8)
 	{
@@ -43,7 +43,7 @@ void	handler(int sig, siginfo_t *info, void *context)
 	}
 	bits++;
 	usleep(100);
-	kill(info->si_pid, SIGUSR1);
+	kill(cur_pid, SIGUSR1);
 }
 
 int	main(void)
