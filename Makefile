@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC= gcc
-FLAGS= -Wall -Wextra -Werror -I minitalk.h
+FLAGS= -Wall -Wextra -Werror
 SERVER= server
 CLIENT= client
 PRINTFLIB= ft_printf/libftprintf.a
