@@ -6,7 +6,7 @@
 /*   By: fathjami <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:33:30 by fathjami          #+#    #+#             */
-/*   Updated: 2021/12/16 17:30:46 by fathjami         ###   ########.fr       */
+/*   Updated: 2021/12/17 19:40:20 by fathjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ void	handler(int sig, siginfo_t *info, void *context)
 		cur_pid = new_pid;
 		reset(&c, &bits);
 	}
-	c |= (sig == SIGUSR2);
-	c <<= 1;
+	c |= (sig == SIGUSR1);
+	bits++;
 	if (bits == 8)
 	{
 		ft_printf("%c", c);
 		reset(&c, &bits);
 	}
-	bits++;
+	c <<= 1;
 	usleep(100);
 	kill(cur_pid, SIGUSR1);
 }
@@ -53,7 +53,7 @@ int	main(void)
 	act.sa_sigaction = handler;
 	act.sa_flags = SA_SIGINFO;
 	sigemptyset(&act.sa_mask);
-	ft_printf("Use this pid: %d\n", getpid());
+	ft_printf("---> USE THIS PID ASHRIF %d <---\n", getpid());
 	while (1)
 	{
 		sigaction(SIGUSR1, &act, NULL);

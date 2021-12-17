@@ -6,7 +6,7 @@
 /*   By: fathjami <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 19:38:05 by fathjami          #+#    #+#             */
-/*   Updated: 2021/12/16 15:48:14 by fathjami         ###   ########.fr       */
+/*   Updated: 2021/12/17 21:50:09 by fathjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_atoi(const char *nptr)
 			s *= -1;
 		i++;
 	}
-	while (nptr[i] >= '0'&& nptr[i] <= '9')
+	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		res *= 10;
 		res += (int)nptr[i] - 48;

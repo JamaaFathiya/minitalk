@@ -6,7 +6,7 @@
 #    By: fathjami <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/26 13:37:42 by fathjami          #+#    #+#              #
-#    Updated: 2021/12/16 16:13:40 by fathjami         ###   ########.fr        #
+#    Updated: 2021/12/17 21:39:11 by fathjami         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,14 @@ OBJS=$(FILES:=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	@ar rcs $(NAME) $(OBJS)
 %.o: %.c ft_printf.h
-	gcc -c $(FLAGS)  $< -o $@
+	@gcc -c $(FLAGS)  $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all

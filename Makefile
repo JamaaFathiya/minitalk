@@ -6,43 +6,52 @@
 #    By: fathjami <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 16:00:20 by fathjami          #+#    #+#              #
-#    Updated: 2021/12/16 17:08:08 by fathjami         ###   ########.fr        #
+#    Updated: 2021/12/17 21:52:39 by fathjami         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC= gcc
-FLAGS= -Wall -Wextra -Werror
-SERVER= server
-CLIENT= client
-PRINTFLIB= ft_printf/libftprintf.a
-PATH= ft_printf
+CC    = gcc
+FLAGS    = -Wall -Wextra -Werror
 
-SER_SRC= server.c
-SER_OBJ= server.o
-CLI_SRC= client.c
-CLI_OBJ= client.o
+SRV    = server
+CLI    = client
 
-all: $(PRINTFLIB) $(SERVER) $(CLIENT)
+SRV_C = $(SRV:=.c)
+CLI_C = $(CLI:=.c)
 
-$(SERVER): $(SER_OBJ) minitalk.h
-	$(CC) $(LIB) -o $@ $(SER_OBJ)
+SRV_O    = $(SRV:=.o)
+CLI_O = $(CLI:=.o)
 
-$(CLIENT): $(CLI_OBJ) minitalk.h
-	$(CC) $(LIB) -o $@ $(CLI_OBJ)
+LIB = ft_printf/libftprintf.a
+LIBDIR    = ft_printf
+
+INC = minitalk.h
+
+all: $(LIB) $(SRV) $(CLI)
+
+$(SRV): $(SRV_O) $(INC)
+	@ $(CC) $(FLAGS) -I $(INC) $(LIB) $(SRV_O) -o $@
+	@ echo "[FATHIYA] Shrif server is ready!"
+
+$(CLI): $(CLI_O) $(INC)
+	@ $(CC) $(FLAGS) -I $(INC) $(LIB) $(CLI_O) -o $@
+	@ echo "[FATHIYA] Shrif client is ready!"
 
 %.o: %.c
-	$(CC) -c $(FLAGS) $< -o $@
+	@ $(CC) $(FLAGS) -c $< -o $@
 
-$(PRINTFLIB):
-	$(MAKE) -C $(PATH)
+$(LIB):
+	@ $(MAKE) -C $(LIBDIR)
 
 clean:
-	$(MAKE) clean -C $(PATH)
-	rm -rf $(SER_OBJ) $(CLI_OBJ)
+	@ $(MAKE) clean -C $(LIBDIR)
+	@ rm -rf $(SRV_O) $(CLI_O)
+	@ echo "[FATHIYA] Shrif everything is clean!"
 
-fclean: clean 
-	$(MAKE) fclean -C $(PATH)
-	rm -rf $(SERVER) $(CLIENT)
+fclean: clean
+	@ $(MAKE) fclean -C $(LIBDIR)
+	@ rm -rf $(SRV) $(CLI)
+	@ echo "[FATHIYA] Shrif everything is fclean XD!"
 
 re: fclean all
 
